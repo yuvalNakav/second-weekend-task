@@ -78,6 +78,6 @@ For `tasksFinishedPrecent` for example:
 
     x <= 50%        - light blue
 
-    50% <= x <= 75% - deeper blue
+    50% <= x <= 75% - blue
 
-    75% < x         - deepest blue
+    75% < x         - deep blue
