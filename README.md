@@ -66,7 +66,7 @@ For `totalTime` for example:
 
     x <= 2 - green
 
-    2 <= x <= 5 - orange
+    2 < x <= 5 - orange
 
     5 < x - red
 
@@ -74,7 +74,7 @@ For `tasksFinishedPrecent` for example:
 
     x <= 50%        - light blue
 
-    50% <= x <= 75% - blue
+    50% < x <= 75% - blue
 
     75% < x         - deep blue
    
