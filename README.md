@@ -8,13 +8,9 @@ Create array with 10 objects, each object has the properties:
 
 - finishedAt (Date)
 
-<!-- - totalTime (number) -->
-
 - tasksGiven (number)
 
 - tasksFinished (number)
-
-<!-- - tasksFinishedPrecent (number, floored- 83.45% => 83%) -->
 
 - topic (string)
 
@@ -81,3 +77,8 @@ For `tasksFinishedPrecent` for example:
     50% <= x <= 75% - blue
 
     75% < x         - deep blue
+   
+   
+## Example for Final Outcome
+
+![example-outcome](./outcome-example.png)   
