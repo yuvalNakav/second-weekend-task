@@ -79,10 +79,31 @@ function tasksFinishedPercent(tasksGiven, tasksFinished) {
 }
 for (let task of tasks) {
     task['totalTime'] = Math.abs(task.startedAt - task.finishedAt) / 3600000;
-    task['tasksFinishedPercent'] = Math.floor(task.tasksFinished / task.tasksGiven) * 100;
-    
+    task['tasksFinishedPercent'] = Math.floor((task.tasksFinished / task.tasksGiven) * 100) + '%';
  }
+console.log(tasks[0].startedAt)
+document.write(
+    '<table id = "table" >' +
+    '<tr>' +
+        '<th>Started At</th>' +
+        '<th>Finished At</th>' +
+        '<th>Total Time Spent</th>' +
+        '<th>Tasks Given</th>' +
+        '<th>Tasks Finished</th>' +
+        '<th>Tasks finished %</th>' + 
+        '<th>Topic</th>' + 
+    '</tr>')
 
-// totalTime: ${totalTime(this.startedAt, this.finishedAt)} ,
-// tasksFinishedPercent: ${tasksFinishedPercent(this.tasksGiven, this.tasksFinished)} ,
-console.log(tasks[1])
+for (let i = 0; i < tasks.length; i++){
+     document.write('<tr>' +
+        '<td>' + tasks[i].startedAt + '</td>' + 
+        '<td>' + tasks[i].finishedAt + '</td>' + 
+        '<td>' + tasks[i].totalTime + '</td>' + 
+        '<td>' + tasks[i].tasksGiven + '</td>' + 
+        '<td>' + tasks[i].tasksFinished + '</td>' + 
+        '<td>' + tasks[i].tasksFinishedPercent + '</td>' + 
+        '<td>' + tasks[i].topic + '</td>' + 
+    '</tr>'
+    );
+}
+document.write( '</table>')
