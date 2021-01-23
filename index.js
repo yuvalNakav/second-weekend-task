@@ -1,6 +1,6 @@
 const tasks = [
     {
-        startedAt: date1 =new Date (2021, 1, 10, 16)  ,
+        startedAt: date1 =new Date(2021, 1, 10, 16),
         finishedAt: date2 = new Date(2021, 1, 10, 20),
         tasksGiven: 10,
         tasksFinished: 8,
@@ -15,7 +15,7 @@ const tasks = [
     },
     {
         startedAt: date1 = new Date (2021, 1, 12, 14),
-        finishedAt: date2 = new Date (2021, 1, 12, 19),
+        finishedAt: date2 = new Date (2021, 1, 12, 15),
         tasksGiven: 10,
         tasksFinished: 7,
         topic: 'HTML'
@@ -79,12 +79,11 @@ function tasksFinishedPercent(tasksGiven, tasksFinished) {
 }
 for (let task of tasks) {
     task['totalTime'] = Math.abs(task.startedAt - task.finishedAt) / 3600000;
-    task['tasksFinishedPercent'] = Math.floor((task.tasksFinished / task.tasksGiven) * 100) + '%';
+    task['tasksFinishedPercent'] = Math.floor((task.tasksFinished / task.tasksGiven) * 100);
  }
-console.log(tasks[0].startedAt)
 document.write(
     '<table id = "table" >' +
-    '<tr>' +
+    '<tr id ="headline">' +
         '<th>Started At</th>' +
         '<th>Finished At</th>' +
         '<th>Total Time Spent</th>' +
@@ -94,16 +93,60 @@ document.write(
         '<th>Topic</th>' + 
     '</tr>')
 
-for (let i = 0; i < tasks.length; i++){
-     document.write('<tr>' +
-        '<td>' + tasks[i].startedAt + '</td>' + 
-        '<td>' + tasks[i].finishedAt + '</td>' + 
-        '<td>' + tasks[i].totalTime + '</td>' + 
-        '<td>' + tasks[i].tasksGiven + '</td>' + 
-        '<td>' + tasks[i].tasksFinished + '</td>' + 
-        '<td>' + tasks[i].tasksFinishedPercent + '</td>' + 
-        '<td>' + tasks[i].topic + '</td>' + 
-    '</tr>'
-    );
-}
-document.write( '</table>')
+
+    for (let i in tasks) {
+        if (tasks[i].totalTime < 2) {
+            document.write(
+                '<style>'
+                + '#total' + i + '{' +
+                'background-color: green;' +
+                '}' +
+                '</style>')
+        } else if (tasks[i].totalTime > 2 && tasks[i].totalTime > 4) {
+            document.write(
+                '<style>'
+                + '#total' + i + '{' +
+                'background-color: orange;' +
+                '}' +
+                '</style>')
+        } else {
+            document.write(
+                '<style>'
+                + '#total' + i + '{' +
+                'background-color: red;' +
+                '}' +
+                '</style>')
+        }
+        if (tasks[i].tasksFinishedPercent <= 50) {
+            document.write('<style>'
+            + '#percent' + i + '{' +
+            'background-color: lightblue;' +
+            '}' +
+            '</style>')
+        } else if (tasks[i].tasksFinishedPercent > 50 && tasks[i].tasksFinishedPercent < 75) {
+            document.write('<style>'
+            + '#percent' + i + '{' +
+            'background-color: blue;' +
+            '}' +
+            '</style>')
+        } else {
+            document.write('<style>'
+            + '#percent' + i + '{' +
+            'background-color: darkblue;' +
+            '}' +
+            '</style>')
+        }
+        document.write
+            ('<tr class ="content">' +
+            '<td>' + tasks[i].startedAt.toLocaleTimeString("it-IT", { hour: '2-digit', minute: '2-digit'}) + '</td>' + 
+            '<td>' + tasks[i].finishedAt.toLocaleTimeString("it-IT", { hour: '2-digit', minute: '2-digit'})  + '</td>' + 
+            '<td id ="total' + i + '">' + tasks[i].totalTime + '</td>' + 
+            '<td>' + tasks[i].tasksGiven + '</td>' + 
+            '<td>' + tasks[i].tasksFinished + '</td>' + 
+            '<td id ="percent' + i + '">' + tasks[i].tasksFinishedPercent + '%' + '</td>' + 
+            '<td>' + tasks[i].topic + '</td>' + 
+        '</tr>'
+        );
+    
+    }
+    document.write('</table>')
