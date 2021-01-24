@@ -6,6 +6,7 @@ body {
 #table {
   width: 99vw;
   height: 99vh;
+  border: solid black 1px;
 }
 th {
   border: 1px solid gainsboro;
