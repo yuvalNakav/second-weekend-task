@@ -1,0 +1,22 @@
+body {
+  background-color: hsl(150, 10%, 50%);
+  font-size: 150%;
+  text-align: center;
+}
+#table {
+  width: 99vw;
+  height: 99vh;
+}
+th {
+  border: 1px solid gainsboro;
+  border-radius: 10%;
+  background-color: rgb(46, 109, 103);
+  color: ghostwhite;
+  border-color: black;
+}
+td {
+  border: 1px solid gainsboro;
+  border-radius: 10%;
+  background-color: rgb(134, 134, 134);
+  color: ghostwhite;
+}
