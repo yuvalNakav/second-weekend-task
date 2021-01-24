@@ -117,6 +117,15 @@ for (let header of headers) {
   th.innerText = header;
   tr.append(th);
 }
-
-
-
+for (let task of tasks) {
+  tr = document.createElement('tr');
+  table.append(tr)
+  for (let i in task) {
+    let td = document.createElement('td');
+    td.innerText = task[i];
+    tr.append(td);
+  }
+  // let tdStartedAt = document.createElement('td');
+  // tdStartedAt.innerText = task.startedAt;
+  // tr.append(tdStartedAt);
+}
