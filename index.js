@@ -97,10 +97,30 @@ function tasksFinishedPercent(tasksGiven, tasksFinished) {
 return (tasksGiven / tasksFinished) * 100;
 }
 for (let task of tasks) {
-task["totalTime"] = Math.abs(task.startedAt - task.finishedAt) / 3600000;
-task["tasksFinishedPercent"] = Math.floor(
- (task.tasksFinished / task.tasksGiven) * 100
-);
+  
+  task["totalTime"] = Math.abs(task.startedAt - task.finishedAt) / 3600000;
+  task["tasksFinishedPercent"] = Math.floor(
+  (task.tasksFinished / task.tasksGiven) * 100)
+}
+function timeColor(totalTime) {
+  if (totalTime < 2) {
+    return 'green';
+  } else if (totalTime > 5) {
+    return 'red';
+  } else {
+    return 'orange';
+  }
+}
+
+  function percentColor(tasksFinishedPercent) { 
+    if (tasksFinishedPercent < 60) {
+     return 'dark blue';
+    } else if (tasksFinishedPercent > 80) {
+      return 'light blue';
+    } else {
+      return 'blue';
+    }
+  
 }
 
 
@@ -124,8 +144,12 @@ for (let task of tasks) {
     let td = document.createElement('td');
     td.innerText = task[i];
     tr.append(td);
+    if (task[i] === 'tasksFinishedPercent') {
+      let x = task[i].tasksFinishedPercent;
+      td.className = percentColor(x);
+    } else if (task[i] === 'totalTime') {
+      let x = task[i].totalTime;
+      td.className = timeColor(x);  
+    }
   }
-  // let tdStartedAt = document.createElement('td');
-  // tdStartedAt.innerText = task.startedAt;
-  // tr.append(tdStartedAt);
 }
