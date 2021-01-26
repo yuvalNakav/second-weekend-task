@@ -102,27 +102,6 @@ for (let task of tasks) {
   task["tasksFinishedPercent"] = Math.floor(
   (task.tasksFinished / task.tasksGiven) * 100)
 }
-function timeColor(totalTime) {
-  if (totalTime < 2) {
-    return 'green';
-  } else if (totalTime > 5) {
-    return 'red';
-  } else {
-    return 'orange';
-  }
-}
-
-  function percentColor(tasksFinishedPercent) { 
-    if (tasksFinishedPercent < 60) {
-     return 'dark blue';
-    } else if (tasksFinishedPercent > 80) {
-      return 'light blue';
-    } else {
-      return 'blue';
-    }
-  
-}
-
 
 let body = document.getElementsByTagName("body")[0];
 let table = document.createElement('table');
@@ -130,7 +109,7 @@ let tr = document.createElement('tr');
 table.append(tr);
 body.append(table);
 
-let headers = ['startedAt', 'finishedAt', 'totalTime', 'tasksGiven', 'tasksFinished', 'tasksFinishedPercent', 'topic'];
+let headers = ['Started At', 'Finished At', 'Total Time', 'Tasks Given', 'Tasks Finished', 'Tasks Finished Percent', 'Topic'];
 
 for (let header of headers) {
   let th = document.createElement('th');
@@ -140,16 +119,90 @@ for (let header of headers) {
 for (let task of tasks) {
   tr = document.createElement('tr');
   table.append(tr)
-  for (let i in task) {
-    let td = document.createElement('td');
-    td.innerText = task[i];
-    tr.append(td);
-    if (task[i] === 'tasksFinishedPercent') {
-      let x = task[i].tasksFinishedPercent;
-      td.className = percentColor(x);
-    } else if (task[i] === 'totalTime') {
-      let x = task[i].totalTime;
-      td.className = timeColor(x);  
-    }
+
+  
+  let tdStartedAt = document.createElement('td');
+  tdStartedAt.innerText = task.startedAt.toLocaleTimeString("it-IT", {
+    hour: "2-digit",
+    minute: "2-digit",
+  });
+  tr.append(tdStartedAt);
+
+  let tdFinishedAt = document.createElement('td');
+  tdFinishedAt.innerText = task.finishedAt.toLocaleTimeString("it-IT", {
+    hour: "2-digit",
+    minute: "2-digit",
+  });
+  tr.append(tdFinishedAt);
+
+  let tdTotalTime = document.createElement('td');
+  tdTotalTime.innerText = task.totalTime;
+  tr.append(tdTotalTime);
+  if (task.totalTime <= 2) {
+    tdTotalTime.className = "green";
+  } else if (task.totalTime > 2 && task.totalTime <= 5) {
+    tdTotalTime.className = "orange";
+  } else if (task.totalTime > 5) {
+    tdTotalTime.className = "red";
   }
+  let tdTasksGiven = document.createElement('td');
+  tdTasksGiven.innerText = task.tasksGiven;
+  tr.append(tdTasksGiven);
+  
+  let tdTasksFinished = document.createElement('td');
+  tdTasksFinished.innerText = task.tasksFinished;
+  tr.append(tdTasksFinished);
+
+  let tdTasksFinishedPercent = document.createElement('td');
+  tdTasksFinishedPercent.innerText = task.tasksFinishedPercent;
+  tr.append(tdTasksFinishedPercent);
+  if (task.tasksFinishedPercent < 70) {
+    tdTasksFinishedPercent.classList.add("darkblue");
+  } else if (task.tasksFinishedPercent >= 70 && task.tasksFinishedPercent < 85) {
+    tdTasksFinishedPercent.classList.add("blue");
+  } else if (task.tasksFinishedPercent >= 85) {
+    tdTasksFinishedPercent.classList.add("lightblue");
+  }
+  let tdTopic = document.createElement('td');
+  tdTopic.innerText = task.topic;
+  tr.append(tdTopic);
+
 }
+// function timeColor(totalTime) {
+//   if (totalTime < 2) {
+//     return 'green';
+//   } else if (totalTime > 5) {
+//     return 'red';
+//   } else {
+//     return 'orange';
+//   }
+// }
+
+// function percentColor(tasksFinishedPercent) {
+//   if (tasksFinishedPercent < 60) {
+//     return 'dark blue';
+//   } else if (tasksFinishedPercent > 80) {
+//     return 'light blue';
+//   } else {
+//     return 'blue';
+//   }
+// }
+// 
+// for (let i in task) {
+//   let td = document.createElement('td');
+//   td.innerText = task[i];
+//   tr.append(td);
+//   if (task.tasksFinishedPercent < 70) {
+//     td.classList.add("darkblue");
+//   } else if (task.tasksFinishedPercent >= 70 && task.tasksFinishedPercent < 85) {
+//     td.classList.add("blue");
+//   } else if (task.tasksFinishedPercent >= 85) {
+//     td.classList.add("lightblue");
+//     } else if (task.totalTime <= 2) {
+//       td.classlist.add("green");
+//     } else if (task.totalTime > 2 && task.totalTime <= 5) {
+//       td.classList.add("orange");
+//     } else if (task.totalTime > 5) {
+//       td.classList.add("red")
+//     }  
+//   }
